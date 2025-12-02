@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run compile && vite build",
-    "dev": "vite dev",
+    "dev": "jac serve app.jac",
     "preview": "vite preview",
     "compile": "babel src --out-dir build --extensions \".jsx,.js\" --out-file-extension .js"
   },
@@ -14,11 +14,11 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "vite": "^6.4.1",
     "@babel/cli": "^7.28.3",
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
-    "@babel/preset-react": "^7.28.5"
+    "@babel/preset-react": "^7.28.5",
+    "vite": "^6.4.1"
   },
   "dependencies": {
     "react": "^19.2.0",

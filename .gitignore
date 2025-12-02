@@ -61,3 +61,6 @@ Thumbs.db
 # -------------------------
 # Ignore Jac client constants if storing API keys
 frontend/src/constants/jacClient.ts
+
+# Ignore Jac server configuration files
+app.session.user.json
