@@ -1,4 +1,4 @@
-🤰 MaternAI
+## 🤰 MaternAI
 1 file. 4 agents. Infinite care.
 
 ⚡ What Is It?
@@ -106,8 +106,11 @@ text
 ╠════════════════════════════════════════╣
 ║  [📊 Dashboard] [➕ Add Metric]        ║
 ╚════════════════════════════════════════╝
+
 ➕ Add Metric Flow
+
 text
+
 User clicks "Add High BP (145)"
         ↓
 spawn root recorder(
@@ -120,6 +123,7 @@ spawn root recorder(
 Agent creates HealthMetric node → links to Patient
         ↓
 Dashboard auto-refreshes via useEffect
+
 🧠 AI Analysis Flow
 text
 User clicks "Run New Analysis"
@@ -131,6 +135,7 @@ Graph traversal → collects all metrics
 Computes risk patterns → creates RiskReport
         ↓
 Dashboard updates with new analysis
+
 🔥 Why One File?
 Problem: Complexity in normal stacks
 
@@ -174,12 +179,14 @@ jac run app.jac
 jac run app.jac --port 8001
 
 # Visualize graph
+
 jac dot app.jac | dot -Tpng -o graph.png
 📁 Project Structure
 text
 maternai-app/
 ├── app.jac       ← Everything (520 lines)
 └── README.md     ← This file
+
 🎓 Key Concepts
 OSP Graph
 jac
