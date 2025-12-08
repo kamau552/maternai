@@ -222,8 +222,11 @@ walker NewAgent {
 Call it:
 
 jac
+
 result = spawn root NewAgent(some_param="value");
-👩‍💻 Credits
+
+##👩‍💻 Credits
+
 Built by: Faith Kamau
 Research: Felix Kipkemoi, Barbara Musumba, Stephen Oloo, Henry Muema, Gloria Shikuku
 For: AI Hackathon 2024
