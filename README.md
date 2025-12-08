@@ -18,17 +18,23 @@ API layer
 📍 What / Where
 Section	Description
 Lines 1–50	OSP Graph structure
+
 Lines 51–120	Agent 1: Data Collector – records metrics
+
 Lines 121–230	Agent 2: AI Doctor – analyzes risks
+
 Lines 231–350	Agent 3: Dashboard Reporter – fetches data
+
 Lines 351–520	Jac Client React components
+
 🚀 Run It (10 seconds)
 bash
 # Install Jac
 pip install jaclang
 
 # Get the file
-git clone https://github.com/YOUR_USERNAME/maternai.git
+git clone https://github.com/kamau552/maternai
+
 cd maternai
 
 # Run (starts backend + serves frontend)
