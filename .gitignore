@@ -13,10 +13,20 @@ __jac_gen__/
 .jac_mypy_cache/
 
 # Jac session and database files
+app.session
+app.session.*
 *.session
-*.session.json
-*.session.db
+*.session.*
 app.session.user.json
+app.session.users.json
+*.session.user.json
+*.session.users.json
+.session
+.session.*
+.session.db
+*.session.db
+.session.json
+
 mydatabase/
 *.rdb
 
@@ -260,3 +270,4 @@ secrets.yml
 # Performance monitoring
 *.cpuprofile
 *.heapsnapshot
+
