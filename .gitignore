@@ -1,66 +1,262 @@
-# -------------------------
-# Node / React frontend
-# -------------------------
+# ========================
+# Jac Specific
+# ========================
+
+# Jac build and cache files
+__jac_gen__/
+*.jir
+*.jast
+*.jbc
+*.jac.gv
+*.jac.dot
+*.jac.png
+.jac_mypy_cache/
+
+# Jac session and database files
+*.session
+*.session.json
+*.session.db
+app.session.user.json
+mydatabase/
+*.rdb
+
+# Jac testing and debugging files
+parser.out
+codegen_output*
+out.dot
+out.txt
+demo.jac
+test_*.jac
+
+# ========================
+# React/Node.js
+# ========================
+
+# Dependencies
 node_modules/
-build/
-dist/
-.out/
-.next/
-.cache/
-.parcel-cache/
-.vitepress/dist/
-.vitepress/cache/
-.env
-.env.local
-.env.*.local
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+.pnpm-debug.log*
 
-# TypeScript cache
-*.tsbuildinfo
+# Build outputs
+dist/
+build/
+.next/
+out/
+.nuxt/
+.nuxt-prod/
 
-# IDE / Editor
-.vscode/
-.idea/
-*.sublime-workspace
-*.sublime-project
+# Cache
+.cache/
+.parcel-cache/
+.vitepress/cache/
+.vite/
+.nitro/
+.eslintcache
 
-# -------------------------
-# Python / Jac backend
-# -------------------------
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+
+# ========================
+# Python
+# ========================
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-*.sqlite3
-*.db
-*.log
-*.pot
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
 # Virtual environments
 jacenv/
 venv/
 ENV/
 env/
+env.bak/
+venv.bak/
 
-# Jac cache / temporary files
-*.jaccache
-*.tmp
-*.bak
+# PyCharm
+.idea/
 
-# -------------------------
-# OS
-# -------------------------
+# ========================
+# IDE/Editor
+# ========================
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# ========================
+# OS Generated
+# ========================
+
+# macOS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# -------------------------
-# Optional / Sensitive
-# -------------------------
-# Ignore Jac client constants if storing API keys
-frontend/src/constants/jacClient.ts
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
 
-# Ignore Jac server configuration files
-app.session.user.json
+# Linux
+*~
+
+# ========================
+# Database
+# ========================
+
+# SQLite
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# ========================
+# Logs
+# ========================
+
+# All logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ========================
+# Testing
+# ========================
+
+# Coverage
+.coverage
+.nyc_output
+coverage/
+lcov.info
+*.lcov
+
+# Jest
+jest-cache/
+
+# ========================
+# Temporary
+# ========================
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+*~
+*.swo
+
+# Backup files
+*.backup
+*.bk
+
+# ========================
+# Project Specific
+# ========================
+
+# Jac client constants (if storing API keys)
+frontend/src/constants/jacClient.ts
+frontend/src/constants/jacConfig.ts
+
+# Jac server configuration
+jac.config.json
+*.session.user.json
+
+# ========================
+# Build Systems
+# ========================
+
+# TypeScript
+*.tsbuildinfo
+
+# Vite
+dist/
+*.local
+
+# Webpack
+.webpack/
+
+# ========================
+# Docker
+# ========================
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# ========================
+# Documentation
+# ========================
+
+# Generated docs
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# ========================
+# Security
+# ========================
+
+# Secrets
+secrets.yaml
+secrets.yml
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# ========================
+# Performance
+# ========================
+
+# Performance monitoring
+*.cpuprofile
+*.heapsnapshot
