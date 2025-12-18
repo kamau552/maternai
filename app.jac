@@ -1,5 +1,3 @@
-
-
 # ============= NODE DEFINITIONS =============
 node User {
     has username: str;
@@ -13,9 +11,19 @@ node User {
     has is_active: bool = True;
 }
 
-node Patient(User) {
-    #has age: int;
-    #has pregnancy_week: int;
+node Patient {
+    has username: str;
+    has email: str;
+    has password_hash: str;
+    has user_type: str;
+    has full_name: str;
+    has created_at: str;
+    has last_login: str;
+    has profile_pic: str = "";
+    has is_active: bool = True;
+    
+    has age: int;
+    has pregnancy_week: int;
     has blood_type: str;
     has phone: str;
     has emergency_contact: str;
@@ -110,16 +118,16 @@ node ChatMessage {
 # ==================== FIXED WALKERS ====================
 
 walker seed_initial_data {
-    can seed with `root entry {
+    can seed with root entry {
         # Check if already seeded
-        check = [root -->(`?User)];
+        check = [-->](`?User);
         if len(check) > 0 {
             report {"status": "Already seeded"};
             disengage;
         }
 
-        # Create Patient with ALL required fields
-        p = root ++> Patient(
+        # Create Patient node
+        patient_node = Patient(
             username="sarah",
             email="sarah@example.com",
             password_hash="hashed_pass123",
@@ -134,45 +142,55 @@ walker seed_initial_data {
             last_checkup="2024-01-01",
             insurance_provider="NHIF",
             primary_doctor="Dr. Williams",
-            created_at=str(now()),
-            last_login=str(now()),
+            created_at="2024-01-01T00:00:00",
+            last_login="2024-01-01T00:00:00",
             risk_level="Low"
         );
+        
+        # Connect to root
+        here ++> patient_node;
 
-        # Create Data for Patient
-        p ++> HealthMetric(
+        # Create Health Metrics
+        metric1 = HealthMetric(
             metric_type="BP Systolic", 
             value=120.0, 
             unit="mmHg", 
             timestamp="2024-01-01", 
             is_abnormal=False
         );
-        p ++> HealthMetric(
+        patient_node ++> metric1;
+        
+        metric2 = HealthMetric(
             metric_type="Glucose", 
             value=150.0, 
             unit="mg/dL", 
             timestamp="2024-01-02", 
             is_abnormal=True
         );
+        patient_node ++> metric2;
         
-        p ++> Appointment(
+        # Create Appointment
+        appt = Appointment(
             doctor_name="Dr. Williams", 
             appointment_date="2025-01-20", 
             purpose="Checkup", 
             status="Scheduled",
             location="City Hospital"
         );
+        patient_node ++> appt;
 
-        p ++> RiskReport(
+        # Create Risk Report
+        risk = RiskReport(
             summary="High Glucose Detected", 
             severity="Medium", 
             recommendation="Monitor sugar intake", 
             detected_at="2024-01-02",
             confidence=0.8
         );
+        patient_node ++> risk;
 
-        # Create Facilities with ALL required fields
-        root ++> HealthFacility(
+        # Create Facilities
+        facility1 = HealthFacility(
             name="City Hospital", 
             facility_type="General", 
             location_lat=-1.29, 
@@ -182,7 +200,9 @@ walker seed_initial_data {
             services=["Emergency", "Maternity"],
             rating=4.5
         );
-        root ++> HealthFacility(
+        here ++> facility1;
+        
+        facility2 = HealthFacility(
             name="Maternity Clinic", 
             facility_type="Clinic", 
             location_lat=-1.28, 
@@ -192,47 +212,23 @@ walker seed_initial_data {
             services=["Maternity", "Checkup"],
             rating=4.8
         );
+        here ++> facility2;
 
         report {"status": "Seeded successfully"};
     }
 }
 
+
+
 walker init {
-    can run with `root entry {
-        users = [root -->(`?User)];
+    can run with root entry {
+        users = [-->](`?User);
         
         if len(users) == 0 {
-            seed_walker = seed_initial_data();
-            root spawn seed_walker;
+            spawn here walker:seed_initial_data;
             report {"message": "Initial data seeded", "status": "success"};
         } else {
             report {"message": "Data already exists", "status": "skipped"};
         }
-    }
-}
-
-
-
-# ============= MAIN ENTRY POINT =============
-walker init_system {
-    can init_system with entry {
-        std.out("Starting MaternAI System Initialization...");
-        
-        # First, check if we're in a graph context
-        if not root or not root.is_node {
-            std.err("ERROR: Not in a valid graph context!");
-            std.err("Make sure you're running within MaternAIGraph.");
-            std.err("Run: `jac run init_system` from the command line.");
-            report {"status": "failed", "message": "Graph not properly initialized"};
-            disengage;
-        }
-        
-        std.out("Root node is valid: " + str(root.id));
-        
-        # Run the init walker to seed data if needed
-        init_walker = init();
-        root spawn init_walker;
-        
-        report {"status": "initialized", "message": "MaternAI system ready"};
     }
 }
