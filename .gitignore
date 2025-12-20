@@ -272,3 +272,4 @@ secrets.yml
 *.cpuprofile
 *.heapsnapshot
 
+.src
