@@ -26,6 +26,7 @@ app.session.users.json
 .session.db
 *.session.db
 .session.json
+.src
 
 mydatabase/
 *.rdb
